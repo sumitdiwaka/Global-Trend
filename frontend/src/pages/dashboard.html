@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Manager - Dashboard</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-brand">
+                    <div class="brand-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h2>Task Manager</h2>
+                </div>
+            </div>
+            
+            <div class="user-profile">
+                <div class="avatar" id="userAvatar">
+                    <!-- Initials will be added by JS -->
+                </div>
+                <div class="user-info">
+                    <h3 id="userName">Loading...</h3>
+                    <p id="userEmail">Loading...</p>
+                </div>
+            </div>
+            
+            <ul class="nav-links">
+                <li>
+                    <a href="#" class="active">
+                        <i class="fas fa-home"></i>
+                        <span>Dashboard</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-calendar-alt"></i>
+                        <span>Calendar</span>
+                        <span class="nav-badge" id="calendarTasksCount">0</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-chart-bar"></i>
+                        <span>Analytics</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" id="logoutBtn">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Logout</span>
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="sidebar-footer">
+                <div class="progress-overview">
+                    <div class="progress-header">
+                        <span>Overall Progress</span>
+                        <span id="progressText">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-content">
+                    <h1>My Tasks</h1>
+                    <p id="taskCount">0 tasks</p>
+                </div>
+                
+                <div class="header-controls">
+                    <button id="themeToggle" class="btn btn-outline" title="Toggle Theme">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Statistics Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon total">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-total">0</h3>
+                        <p>Total Tasks</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon todo">
+                        <i class="fas fa-list"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-todo">0</h3>
+                        <p>To Do</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon in-progress">
+                        <i class="fas fa-spinner"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-progress">0</h3>
+                        <p>In Progress</p>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-icon completed">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-completed">0</h3>
+                        <p>Completed</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calendar Widget -->
+            <div class="calendar-widget">
+                <div class="calendar-header">
+                    <h3>Calendar</h3>
+                    <div class="calendar-nav">
+                        <button class="calendar-nav-btn" id="prevMonth">
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                        <div class="calendar-month-year" id="calendarMonthYear">
+                            Loading...
+                        </div>
+                        <button class="calendar-nav-btn" id="nextMonth">
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                        <button class="btn btn-sm btn-outline" id="todayBtn">
+                            Today
+                        </button>
+                    </div>
+                </div>
+                <div class="calendar-grid" id="calendarGrid">
+                    <!-- Calendar will be populated by JavaScript -->
+                </div>
+                <div class="calendar-legend">
+                    <div class="calendar-legend-item">
+                        <div class="calendar-legend-dot todo"></div>
+                        <span>To Do</span>
+                    </div>
+                    <div class="calendar-legend-item">
+                        <div class="calendar-legend-dot in-progress"></div>
+                        <span>In Progress</span>
+                    </div>
+                    <div class="calendar-legend-item">
+                        <div class="calendar-legend-dot completed"></div>
+                        <span>Completed</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Search and Filters Bar with Add Task Button -->
+            <div class="filters-and-search">
+                <div class="filters-left">
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fas fa-search search-icon"></i>
+                            <input type="text" id="searchTasks" placeholder="Search tasks...">
+                        </div>
+                    </div>
+                    
+                    <div class="sort-container">
+                        <label for="sortTasks">Sort by:</label>
+                        <select id="sortTasks" class="form-control">
+                            <option value="date-desc">Newest First</option>
+                            <option value="date-asc">Oldest First</option>
+                            <option value="title">Title A-Z</option>
+                            <option value="priority">Priority (High to Low)</option>
+                            <option value="due-date">Due Date (Soonest)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <span>Filter:</span>
+                        <button class="filter-btn active" data-filter="all">All</button>
+                        <button class="filter-btn" data-filter="todo">To Do</button>
+                        <button class="filter-btn" data-filter="in-progress">In Progress</button>
+                        <button class="filter-btn" data-filter="completed">Completed</button>
+                    </div>
+                </div>
+                
+                <div class="filters-right">
+                    <button id="addTaskBtn" class="btn btn-primary">
+                        <i class="fas fa-plus"></i> Add Task
+                    </button>
+                </div>
+            </div>
+
+            <!-- Tasks Grid -->
+            <div id="tasksContainer" class="tasks-grid">
+                <!-- Tasks will be loaded here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Enhanced Task Modal -->
+    <div id="taskModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Create New Task</h2>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="taskForm">
+                    <div class="form-group">
+                        <label for="taskTitle">Title *</label>
+                        <input type="text" id="taskTitle" class="form-control" placeholder="What needs to be done?" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="taskDescription">Description</label>
+                        <textarea id="taskDescription" class="form-control" rows="4" 
+                                placeholder="Add details about this task..."></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskStatus">Status</label>
+                            <select id="taskStatus" class="form-control">
+                                <option value="todo">To Do</option>
+                                <option value="in-progress">In Progress</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="taskPriority">Priority</label>
+                            <select id="taskPriority" class="form-control">
+                                <option value="low">Low</option>
+                                <option value="medium" selected>Medium</option>
+                                <option value="high">High</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="taskDueDate">Due Date</label>
+                            <input type="date" id="taskDueDate" class="form-control">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="taskProgress">Progress</label>
+                            <input type="range" id="taskProgress" class="range-slider" min="0" max="100" step="10" value="0">
+                            <div class="progress-value" id="progressValue">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="cancelTaskBtn">
+                            Cancel
+                        </button>
+                        <button type="submit" id="submitTaskBtn" class="btn btn-primary">
+                            Save Task
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div id="confirmationModal" class="confirmation-modal">
+        <div class="confirmation-content">
+            <div class="confirmation-header warning" id="confirmationHeader">
+                <i class="fas fa-exclamation-triangle"></i>
+                <h3 id="confirmationTitle">Confirm Action</h3>
+                <p id="confirmationSubtitle">Are you sure you want to proceed?</p>
+            </div>
+            <div class="confirmation-body">
+                <p id="confirmationMessage">This action cannot be undone.</p>
+            </div>
+            <div class="confirmation-footer">
+                <button type="button" class="btn btn-outline" id="cancelConfirmBtn">
+                    Cancel
+                </button>
+                <button type="button" class="btn btn-danger" id="confirmActionBtn">
+                    Confirm
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bulk Actions Bar -->
+    <div id="bulkActionsBar" class="bulk-actions-bar" style="display: none;">
+        <div class="bulk-count">
+            <span id="selectedTasksCount">0</span> tasks selected
+        </div>
+        <div class="bulk-actions-buttons">
+            <button id="bulkCompleteBtn" class="btn btn-success btn-sm">
+                <i class="fas fa-check"></i> Complete
+            </button>
+            <button id="bulkDeleteBtn" class="btn btn-danger btn-sm">
+                <i class="fas fa-trash"></i> Delete
+            </button>
+            <button id="clearSelectionBtn" class="btn btn-outline btn-sm">
+                <i class="fas fa-times"></i> Clear
+            </button>
+        </div>
+    </div>
+
+    <!-- Calendar Date Tasks Modal -->
+<div id="calendarDateModal" class="modal calendar-date-modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 id="calendarDateTitle">Tasks for Date</h2>
+            <button class="close-modal">&times;</button>
+        </div>
+        <div class="modal-body">
+            <div id="dateTasksContainer" class="date-tasks-container">
+                <!-- Tasks for selected date will appear here -->
+            </div>
+        </div>
+    </div>
+</div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/tasks.js"></script>
+</body>
+</html>

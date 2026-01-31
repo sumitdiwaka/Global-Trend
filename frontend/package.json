@@ -1,0 +1,11 @@
+{
+  "name": "task-management-frontend",
+  "version": "1.0.0",
+  "description": "Frontend for Task Management App",
+  "scripts": {
+    "dev": "live-server src --port=3000 --host=localhost"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2"
+  }
+}
