@@ -1,6 +1,6 @@
 class TaskManager {
     constructor() {
-        this.baseURL = 'http://localhost:5000/api/tasks';
+        this.baseURL = 'http://localhost:5000/api/tasks' ||  'https://global-trend-0kt7.onrender.com';
         this.auth = window.auth;
         this.currentFilter = 'all';
         this.tasks = [];

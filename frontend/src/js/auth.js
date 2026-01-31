@@ -1,6 +1,6 @@
 class Auth {
     constructor() {
-        this.baseURL = 'http://localhost:5000/api/auth';
+        this.baseURL = 'http://localhost:5000/api/auth'|| ' https://global-trend-0kt7.onrender.com';
         this.init();
     }
 
