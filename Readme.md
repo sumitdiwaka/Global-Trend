@@ -125,7 +125,7 @@ Modern web browser
 
 Step 1: Clone or Download
 bash
-git clone https://github.com/yourusername/task-manager.git
+git clone https://github.com/sumitdiwaka/Global-Trend
 cd task-manager
 Step 2: Backend Setup
 bash
